@@ -1,6 +1,16 @@
+"use client"
+import React, {useState} from 'react';
+import ReactDOM from 'react-dom';
+import Fullpage, { FullPageSections, FullpageSection } from '@ap.cx/react-fullpage'
+
 import Image from 'next/image'
 import NavBar from '@/components/NavBar'
+
+
 export default function Home() {
+  const [isImageLoading, setImageLoading] = useState(true)
+
+
   return (
     <>
 
@@ -16,9 +26,11 @@ export default function Home() {
             objectPosition='cover'
             fill
             // sizes="100vw"
-            className="w-full"
-
-            priority
+    
+            onLoad={() => setImageLoading(false)}
+            className={`${isImageLoading ? 'blur w-full' : 'remove-blur w-full'}`}
+      // placeholder="blur"
+      //       priority
           />
           {/* Photo by Lalit Rane: https://www.pexels.com/photo/astrophotography-auckland-long-exposure-milky-way-395611/ */}
 
@@ -44,6 +56,27 @@ export default function Home() {
 
 
       </main>
+      {/* <Fullpage>
+
+<FullPageSections>
+
+  <FullpageSection style={{
+    backgroundColor: 'lime',
+    height: '80vh',
+    padding: '1em',
+  }}>1</FullpageSection>
+  <FullpageSection style={{
+    backgroundColor: 'coral',
+    padding: '1em',
+  }}>2</FullpageSection>
+  <FullpageSection style={{
+    backgroundColor: 'firebrick',
+    padding: '1em',
+  }}>3</FullpageSection>
+
+</FullPageSections>
+
+</Fullpage> */}
     </>
   )
 }
